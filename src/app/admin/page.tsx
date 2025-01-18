@@ -6,14 +6,13 @@ import { Card ,
 } from "@/components/ui/card";
 import { db } from "@/db/db";
 import { formatCurrency, formatNumber } from "@/lib/formatters";
-import { get } from "http";
 
 async function getSalesData() {
   const data = await db.order.aggregate({
     _sum:{ pricePaidInCents: true },
     _count: true        
     })
-    await wait(3000)
+    await wait(1000)
     return {
         amount: (data._sum.pricePaidInCents || 0)/100,
         numberOfSales: data._count
